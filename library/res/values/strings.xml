@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="locationNameLabelCaption">Location name:</string>
+    <string name="noLocationResult">No results</string>
+    <string name="geocoderError">Geocoder error</string>
+    <string name="geocoderNotAvailable">Geocoder service not available on the device. It is typically
+        provided by Google Play Services / GAPPS.
+    </string>
+    <string name="locationFeatureLabelCaption">Feature:</string>
+</resources>

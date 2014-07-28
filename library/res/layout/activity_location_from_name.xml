@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.kokos.geolocatorgui.lib.LocationFromNameActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/locationNameLabel"
+        android:text="@string/locationNameLabelCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationNameEdit"
+            android:inputType="text"
+            android:layout_weight="1"/>
+        <ProgressBar
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/noResultsOrError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/noLocationResult"
+        android:visibility="gone"/>
+    <ListView
+        android:id="@+id/resultsList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
