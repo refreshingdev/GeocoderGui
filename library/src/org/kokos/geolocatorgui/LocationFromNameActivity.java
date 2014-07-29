@@ -24,6 +24,7 @@ public class LocationFromNameActivity extends Activity {
     private GeocoderWrapper geocoderWrapper;
     private TextView noResultsOrErrorText;
     private EditText locationNameEdit;
+    private ImageButton retryButton;
     private ProgressBar spinner;
     private ListView resultsList;
     private List<Address> addresses;
@@ -40,6 +41,7 @@ public class LocationFromNameActivity extends Activity {
             resultsList = (ListView) findViewById(R.id.resultsList);
             locationNameEdit = (EditText) findViewById(R.id.locationNameEdit);
             spinner = (ProgressBar) findViewById(R.id.spinner);
+            retryButton = (ImageButton) findViewById(R.id.retryButton);
             initializeLocationEditListener();
         } else {
             displayErrorDialogAndGoBack(R.string.geocoderNotAvailable);
@@ -68,7 +70,12 @@ public class LocationFromNameActivity extends Activity {
     }
 
     private void handleTextChanged(CharSequence newText) {
+        retryButton.setVisibility(View.GONE);
         resultsList.setVisibility(View.INVISIBLE);
+        if (spinner.getVisibility() == View.GONE) {
+            spinner.setVisibility(View.INVISIBLE);
+        }
+
         if (newText.length() >= 3) {
             spinner.setVisibility(View.VISIBLE);
             String locationName = locationNameEdit.getText().toString();
@@ -87,16 +94,26 @@ public class LocationFromNameActivity extends Activity {
         }
     }
 
+    public void onReloadClick(View view) {
+        handleTextChanged(locationNameEdit.getText());
+    }
+
     private void displayResults() {
         if (addresses == null) {
-            noResultsOrErrorText.setVisibility(View.VISIBLE);
+            // error
+            spinner.setVisibility(View.GONE);
+            retryButton.setVisibility(View.VISIBLE);
+
             resultsList.setVisibility(View.GONE);
+            noResultsOrErrorText.setVisibility(View.VISIBLE);
             noResultsOrErrorText.setText(R.string.geocoderError);
         } else if (addresses.isEmpty()) {
-            noResultsOrErrorText.setVisibility(View.VISIBLE);
+            // no results
             resultsList.setVisibility(View.GONE);
+            noResultsOrErrorText.setVisibility(View.VISIBLE);
             noResultsOrErrorText.setText(R.string.noLocationResult);
         } else {
+            // successful search
             noResultsOrErrorText.setVisibility(View.GONE);
             resultsList.setVisibility(View.VISIBLE);
             resultsList.setAdapter(new KArrayAdapter<String>(this, getShortAdressTexts(addresses)));

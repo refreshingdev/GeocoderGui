@@ -7,4 +7,5 @@
         provided by Google Play Services / GAPPS.
     </string>
     <string name="locationFeatureLabelCaption">Feature:</string>
+    <string name="retry">Retry</string>
 </resources>

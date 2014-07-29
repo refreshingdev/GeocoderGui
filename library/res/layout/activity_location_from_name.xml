@@ -27,6 +27,14 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:visibility="invisible"/>
+        <ImageButton
+            android:id="@+id/retryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onReloadClick"
+            android:src="@drawable/ic_refresh_holo_dark"
+            android:contentDescription="@string/retry"
+            android:visibility="gone"/>
     </LinearLayout>
     <TextView
         android:id="@+id/noResultsOrError"
